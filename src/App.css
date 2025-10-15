@@ -1,36 +1,33 @@
-/* Cleaned and valid CSS for the app (merged duplicates, fixed braces, @keyframes at root) */
+/* Versión simplificada y compatible: sin variables CSS, sin animaciones ni propiedades avanzadas */
 
-:root {
-  --bg-0: #021217;
-  --bg-1: #072028;
-  --card: linear-gradient(180deg,#0b2430,#071827);
-  --accent: #34d399;
-  --muted: #9fb7b0;
-}
-
-* { box-sizing: border-box }
-html, body, #root { height: 100%; margin: 0 }
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
 
 body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #021217; /* color sólido más compatible */
+  color: #e6f7f2;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  background: linear-gradient(180deg, var(--bg-0), var(--bg-1));
-  color: #e6f7f2;
 }
 
-.app-root { width: 100%; display: flex; align-items: center; justify-content: center; padding: 18px }
+.app-root {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
 
 .quickdoor-root {
   width: 100%;
   max-width: 520px;
-  padding: 16px;
-  border-radius: 16px;
-  background: var(--card);
-  box-shadow: 0 12px 32px rgba(2,6,11,0.6);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  padding: 12px;
+  border-radius: 8px;
+  background: #0b2430; /* color de tarjeta simple */
+  color: #fff;
 }
 
 .hud {
@@ -40,98 +37,30 @@ body {
   gap: 12px;
   margin-bottom: 12px;
 }
-.hud-left { display: flex; flex-direction: column; gap: 6px }
-.hud-right { display: flex; align-items: center; gap: 8px }
-.hud .hud-item { font-size: 16px; color: var(--muted) }
-.hud strong { color: #fff; font-size: 18px }
+.hud-left { display:flex; gap:6px; align-items:center }
+.hud-right { display:flex; gap:6px; align-items:center }
+.hud .hud-item { font-size: 14px; color: #9fb7b0 }
+.hud strong { color:#fff }
 
-.controls { display: flex; gap: 8px; align-items: center }
-.btn-primary { background: linear-gradient(180deg,#10b981,#059669); color:#042029; border:none; padding:8px 14px; border-radius:10px; font-weight:700; box-shadow:0 6px 16px rgba(16,185,129,0.18) }
-.btn-reset { background: transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted); padding:6px 10px; border-radius:8px }
+.controls { display:flex; gap:8px; }
+.controls button { padding:6px 10px; border-radius:6px; border: none; cursor: pointer }
+.btn-primary { background:#10b981; color:#042029 }
+.btn-reset { background:transparent; color:#9fb7b0; border:1px solid rgba(255,255,255,0.06) }
 
-.doors { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px }
-.door {
-  position: relative;
-  overflow: visible;
-  aspect-ratio: 3/4;
-  border-radius: 18px 18px 6px 6px;
-  padding: 6px;
-  border: none;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  cursor: pointer;
-  touch-action: manipulation;
-  transition: transform .12s ease, background .12s ease, color .12s ease, box-shadow .12s ease;
-}
-.door-inner { display:flex; flex-direction:column; align-items:center; gap:6px; padding-bottom:8px }
-.door-emoji { font-size: 24px }
-.door-text { font-weight:800; color:#d7f7ee }
+.doors { display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px }
+.door { height: 110px; border-radius: 8px; padding: 8px; border:1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); display:flex; align-items:flex-end; justify-content:center; cursor:pointer }
+.door.open { background: #34d399; color:#042029 }
+.door:hover { opacity: 0.95 }
+.door-text { font-weight:700 }
 
-.door::before { content: ''; position: absolute; left: 10%; right: 10%; top: -40%; height: 80%; background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(255,255,255,0.02)); border-radius: 50%; z-index: 0; filter: blur(2px); opacity: .9 }
-.door .door-inner { position: relative; z-index: 2 }
+.tip { margin-top:10px; font-size:13px; color:#cfeeea }
 
-.door.open {
-  background: linear-gradient(180deg, var(--accent), #10b981);
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 14px 30px rgba(16,185,129,0.14);
-}
-.door.open .door-text { color: #042029 }
-.door:active { transform: scale(.98) }
-.door:hover { box-shadow: 0 8px 20px rgba(10,10,10,0.2) }
-
-.tip { margin-top: 10px; font-size: 14px; color: var(--muted); text-align: center }
-
-.hud.success { box-shadow: 0 10px 30px rgba(52,211,153,0.12) }
-.hud.miss { animation: shake .28s }
-
-/* small polish & layout */
-.game-area { display:flex; justify-content:center; margin: 1.5rem 0 }
-.card { padding: 2em }
-.read-the-docs { color: #888 }
-
-/* logo & misc */
-.logo { height: 6em; padding: 1.5em; will-change: filter; transition: filter 300ms }
-.logo:hover { filter: drop-shadow(0 0 2em #646cffaa) }
-.logo.react:hover { filter: drop-shadow(0 0 2em #61dafbaa) }
-
-/* animations (defined at root level) */
-@keyframes shake {
-  0% { transform: translateX(0) }
-  25% { transform: translateX(-6px) }
-  50% { transform: translateX(6px) }
-  75% { transform: translateX(-4px) }
-  100% { transform: translateX(0) }
+/* small responsive tweaks */
+@media (max-width: 520px) {
+  .doors { grid-template-columns: repeat(2, 1fr) }
+  .door { height: 90px }
 }
 
-@keyframes pulse-success {
-  0% { box-shadow: 0 0 0 rgba(110,231,183,0.0) }
-  50% { box-shadow: 0 8px 30px rgba(110,231,183,0.12) }
-  100% { box-shadow: 0 0 0 rgba(110,231,183,0.0) }
-}
-
-@keyframes flash-miss {
-  0% { transform: translateY(0) }
-  25% { transform: translateY(-3px) }
-  50% { transform: translateY(0) }
-  75% { transform: translateY(-2px) }
-  100% { transform: translateY(0) }
-}
-
-@keyframes logo-spin { from { transform: rotate(0deg) } to { transform: rotate(360deg) } }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo { animation: logo-spin infinite 20s linear }
-}
-
-/* responsive */
-@media (max-width: 520px) { .doors { grid-template-columns: repeat(2, 1fr) } }
-@media (max-width: 420px) {
-  .doors { grid-template-columns: repeat(2,1fr) }
-  .door { aspect-ratio: 3/5 }
-  .quickdoor-root { padding: 12px }
-}
-
-/* accessibility focus */
+/* accessibility */
 .door:focus { outline: 3px solid rgba(52,211,153,0.14); outline-offset: 3px }
+
