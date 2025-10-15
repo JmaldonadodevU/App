@@ -1,0 +1,261 @@
+/* Clean mobile-first styles for QuickDoor centered on screen */
+:root{
+  --bg-0: #021217;
+  --bg-1: #072028;
+  --card: linear-gradient(180deg,#0b2430,#071827);
+  --accent: #34d399;
+  --muted: #9fb7b0;
+}
+
+*{box-sizing:border-box}
+html,body,#root{height:100%;margin:0}
+body{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: linear-gradient(180deg,var(--bg-0),var(--bg-1));
+  color:#e6f7f2;
+}
+
+.app-root{width:100%;display:flex;align-items:center;justify-content:center;padding:18px}
+
+.quickdoor-root{width:100%;max-width:420px;padding:18px;border-radius:16px;background:var(--card);box-shadow:0 18px 40px rgba(2,6,11,0.6)}
+
+.hud{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.hud-left{display:flex;flex-direction:column;gap:6px}
+.hud-right{display:flex;align-items:center;gap:8px}
+.hud .hud-item{font-size:16px;color:var(--muted)}
+.hud strong{color:#fff;font-size:18px}
+
+.controls{display:flex;gap:8px;align-items:center}
+.btn-primary{background:linear-gradient(180deg,#10b981,#059669);color:#042029;border:none;padding:8px 14px;border-radius:10px;font-weight:700;box-shadow:0 6px 16px rgba(16,185,129,0.18)}
+.btn-reset{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:6px 10px;border-radius:8px}
+
+.doors{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.door{position:relative;overflow:visible;aspect-ratio:3/4;border-radius:18px 18px 6px 6px;padding:6px;border:none;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));display:flex;align-items:flex-end;justify-content:center;cursor:pointer;touch-action:manipulation}
+.door-inner{display:flex;flex-direction:column;align-items:center;gap:6px;padding-bottom:8px}
+.door-emoji{font-size:24px}
+.door-text{font-weight:800;color:#d7f7ee}
+
+/* create an arched top using pseudo-element */
+.door::before{content:'';position:absolute;left:10%;right:10%;top:-40%;height:80%;background:linear-gradient(180deg,rgba(0,0,0,0.08),rgba(255,255,255,0.02));border-radius:50%;z-index:0;filter:blur(2px);opacity:.9}
+.door .door-inner{position:relative;z-index:2}
+
+.door.open{background:linear-gradient(180deg,var(--accent),#10b981);transform:translateY(-6px);box-shadow:0 14px 30px rgba(16,185,129,0.14)}
+.door.open .door-text{color:#042029}
+
+.tip{margin-top:10px;font-size:14px;color:var(--muted);text-align:center}
+
+/* feedback */
+.hud.success{box-shadow:0 10px 30px rgba(52,211,153,0.12)}
+.hud.miss{animation:shake .28s}
+@keyframes shake{0%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-4px)}100%{transform:translateX(0)}}
+
+/* responsive: smaller screens stack doors in 2 columns */
+@media (max-width:420px){
+  .doors{grid-template-columns:repeat(2,1fr)}
+  .door{aspect-ratio:3/5}
+  .quickdoor-root{padding:12px}
+}
+
+/* accessibility focus */
+.door:focus{outline:3px solid rgba(52,211,153,0.14);outline-offset:3px}
+
+/* Mobile-first styles for QuickDoor */
+:root{
+  --bg-0: #021217;
+  --bg-1: #072028;
+  --card: linear-gradient(180deg,#0b2430,#071827);
+  --accent: #34d399;
+  --muted: #9fb7b0;
+}
+
+*{box-sizing:border-box}
+html,body,#root{height:100%;margin:0}
+body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background: linear-gradient(180deg,var(--bg-0),var(--bg-1)); color:#e6f7f2}
+
+.app-root{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:18px}
+
+.quickdoor-root{width:100%;max-width:420px;padding:16px;border-radius:16px;background:var(--card);box-shadow:0 10px 30px rgba(2,6,11,0.6)}
+
+.hud{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.hud-left{display:flex;flex-direction:column;gap:6px}
+.hud-right{display:flex;align-items:center;gap:8px}
+.hud .hud-item{font-size:16px;color:var(--muted)}
+.hud strong{color:#fff;font-size:18px}
+
+.controls{display:flex;gap:8px;align-items:center}
+.btn-primary{background:linear-gradient(180deg,#10b981,#059669);color:#042029;border:none;padding:8px 14px;border-radius:10px;font-weight:700;box-shadow:0 6px 16px rgba(16,185,129,0.18)}
+.btn-reset{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:6px 10px;border-radius:8px}
+
+.doors{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.door{position:relative;overflow:visible;aspect-ratio:3/4;border-radius:18px 18px 6px 6px;padding:6px;border:none;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));display:flex;align-items:flex-end;justify-content:center;cursor:pointer;touch-action:manipulation}
+.door-inner{display:flex;flex-direction:column;align-items:center;gap:6px;padding-bottom:8px}
+.door-emoji{font-size:24px}
+.door-text{font-weight:800;color:#d7f7ee}
+
+/* create an arched top using pseudo-element */
+.door::before{content:'';position:absolute;left:10%;right:10%;top:-40%;height:80%;background:linear-gradient(180deg,rgba(0,0,0,0.08),rgba(255,255,255,0.02));border-radius:50%;z-index:0;filter:blur(2px);opacity:.9}
+.door .door-inner{position:relative;z-index:2}
+
+.door.open{background:linear-gradient(180deg,var(--accent),#10b981);transform:translateY(-6px);box-shadow:0 14px 30px rgba(16,185,129,0.14)}
+.door.open .door-text{color:#042029}
+
+.tip{margin-top:10px;font-size:14px;color:var(--muted);text-align:center}
+
+/* feedback */
+.hud.success{box-shadow:0 10px 30px rgba(52,211,153,0.12)}
+.hud.miss{animation:shake .28s}
+@keyframes shake{0%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-4px)}100%{transform:translateX(0)}}
+
+/* responsive: smaller screens stack doors in 2 columns */
+@media (max-width:420px){
+  .doors{grid-template-columns:repeat(2,1fr)}
+  .door{aspect-ratio:3/5}
+  .quickdoor-root{padding:12px}
+}
+
+/* accessibility focus */
+.door:focus{outline:3px solid rgba(52,211,153,0.14);outline-offset:3px}
+#root {
+  max-width: 1280px;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  margin-bottom: 0.75rem;
+  padding: .4rem .2rem;
+
+.hud-left { display:flex; gap: .6rem; align-items:center }
+.hud-right { display:flex; gap:.6rem; align-items:center }
+.hud .hud-item { font-size: .95rem }
+.hud .hud-item.small { font-size: .82rem; opacity:.9 }
+.controls button {
+  align-items:center;
+  justify-content:center;
+  background: linear-gradient(180deg,#071022, #021118);
+  padding: 2rem;
+}
+
+.logo {
+.hud.success { animation: pulse-success 350ms ease; }
+.hud.miss { animation: flash-miss 300ms ease; }
+
+@keyframes pulse-success {
+  0% { box-shadow: 0 0 0 rgba(110,231,183,0.0) }
+  50% { box-shadow: 0 8px 30px rgba(110,231,183,0.12) }
+ 100% { box-shadow: 0 0 0 rgba(110,231,183,0.0) }
+}
+@keyframes flash-miss {
+  0% { transform: translateY(0) }
+ 25% { transform: translateY(-3px) }
+ 50% { transform: translateY(0) }
+ 75% { transform: translateY(-2px) }
+ 100% { transform: translateY(0) }
+}
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* QuickDoor game styles */
+.game-area {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+.quickdoor-root {
+  width: 520px;
+  max-width: 95%;
+  background: linear-gradient(180deg,#0f1724, #071029);
+  color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+}
+.hud {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  margin-bottom: 0.75rem;
+}
+.hud div { font-size: .95rem }
+.controls button {
+  padding: .4rem .7rem;
+  border-radius:6px;
+  border: none;
+  background: #0ea5a4;
+  color: #042029;
+  cursor: pointer;
+}
+.doors {
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.door {
+  padding: 1rem 0;
+  border-radius: 8px;
+  border: 2px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  color: #ddd;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .12s ease, background .12s ease, color .12s ease, box-shadow .12s ease;
+}
+.door:active { transform: scale(.98) }
+.door.open {
+  background: linear-gradient(180deg, #6ee7b7, #34d399);
+  color: #042029;
+  box-shadow: 0 10px 30px rgba(52,211,153,0.22), inset 0 -6px 12px rgba(0,0,0,0.12);
+  transform: translateY(-6px) scale(1.02);
+}
+.door:hover { box-shadow: 0 8px 20px rgba(10,10,10,0.2) }
+.tip {
+  margin-top: .75rem;
+  font-size: .9rem;
+  color: #cfeeea;
+  opacity: .9;
+}
+
+/* small polish */
+.quickdoor-root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial }
+.hud strong { color: #fff }
+
+/* responsive */
+@media (max-width: 520px) {
+  .doors { grid-template-columns: repeat(2, 1fr) }
+}
+}
